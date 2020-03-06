@@ -16,19 +16,18 @@ import java.util.List;
  */
 public class StoreSQL implements AutoCloseable {
 
-    /**
-     * Logger.
-     */
     private static final Logger LOG = LoggerFactory.getLogger(StoreSQL.class);
 
     /**
-     *
+     * A DB connection.
      */
-    private Connection connect;
+    private final Connection connect;
 
     /**
-     * @param config, .
-     * @throws SQLException, .
+     * Getting a DB connection.
+     *
+     * @param config, a Config object which reads a properties-files.
+     * @throws SQLException, getConnection and setAutoCommit methods.
      */
     public StoreSQL(Config config) throws SQLException {
         connect = DriverManager.getConnection(config.get("url"));
@@ -36,8 +35,9 @@ public class StoreSQL implements AutoCloseable {
     }
 
     /**
+     * Fills a DB by values.
      *
-     * @param size, .
+     * @param size, size elements in DB.
      * @throws SQLException, .
      */
     public void generate(int size) throws SQLException {
@@ -68,8 +68,9 @@ public class StoreSQL implements AutoCloseable {
     }
 
     /**
+     * Getting all values from DB then packing into Entry-elements and adding to a collection.
      *
-     * @return .
+     * @return a collection of Entry-elements.
      * @throws SQLException, .
      */
     public List<XMLUsage.Entry> load() throws SQLException {
@@ -83,9 +84,6 @@ public class StoreSQL implements AutoCloseable {
         return result;
     }
 
-    /**
-     * @throws Exception, .
-     */
     @Override
     public void close() throws Exception {
         if (connect != null) {

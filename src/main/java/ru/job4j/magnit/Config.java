@@ -3,6 +3,7 @@ package ru.job4j.magnit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Objects;
 import java.util.Properties;
@@ -16,9 +17,6 @@ import java.util.Properties;
  */
 public class Config {
 
-    /**
-     * Logger.
-     */
     private static final Logger LOG = LoggerFactory.getLogger(Config.class);
 
     private final Properties prop = new Properties();
@@ -28,7 +26,7 @@ public class Config {
     }
 
     public void init() {
-        try (InputStream in = Config.class.getClassLoader().getResourceAsStream("sqlite.properties")) {
+        try (InputStream in = new FileInputStream("sqlite.properties")) {
             prop.load(Objects.requireNonNull(in));
         } catch (Exception e) {
             LOG.error(e.getMessage(), e);

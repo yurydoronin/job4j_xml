@@ -16,9 +16,9 @@ notifications:
     on_success: never # default: change
     on_failure: always # default: always
 
-    env:
-      global:
-        - CODECOV_TOKEN="a0a3bf21-101d-4c6b-9ebc-921b04caf234"
+env:
+  global:
+    - CODECOV_TOKEN="35ffc4bc-8769-4074-8311-4cff7304b591"
 
 jdk:
   - openjdk12

@@ -12,6 +12,9 @@ import java.util.List;
  */
 public class XMLUsage {
 
+    /**
+     * A root element.
+     */
     @XmlRootElement
     public static class Entries {
 
@@ -34,12 +37,12 @@ public class XMLUsage {
         }
     }
 
+    /**
+     * The embedded element.
+     */
     public static class Entry {
 
         private int field;
-
-        public Entry() {
-        }
 
         public Entry(int value) {
             this.field = value;

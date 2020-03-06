@@ -4,7 +4,6 @@ import javax.xml.stream.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 /**
  * Class ParseXML.
@@ -16,24 +15,24 @@ import java.nio.file.Paths;
 public class ParseXML {
 
     /**
-     *
+     * A final sum of all Entries' values.
      */
     private int sum;
 
     /**
-     *
+     * A formatted xml-file.
      */
-    private Path source;
+    private final Path source;
 
     public ParseXML(Path source) {
         this.source = source;
     }
 
     /**
-     * Parsing of the converted xsl-file.
+     * Parsing of the converted xsl-file, using StAX-analyzer.
      *
      * @return the sum of all elements in the table.
-     * @throws IOException, .
+     * @throws IOException,        .
      * @throws XMLStreamException, .
      */
     public int sumOfAllElements() throws IOException, XMLStreamException {

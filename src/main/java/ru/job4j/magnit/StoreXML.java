@@ -1,6 +1,5 @@
 package ru.job4j.magnit;
 
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,29 +19,23 @@ import java.util.Objects;
  */
 public class StoreXML {
 
-    /**
-     * A logger.
-     */
     private static final Logger LOG = LoggerFactory.getLogger(StoreXML.class);
 
     /**
      * The file which the data from DP should be saved into.
      */
-    private Path target;
+    private final Path target;
 
-    /**
-     *
-     * @param target, .
-     */
     StoreXML(String target) {
         String property = System.getProperty("user.dir");
         String sep = File.separator;
         this.target = Paths.get(Objects.requireNonNull(String.join(
-                sep, property, "chapter_007", "src", "main", "java", "io", "tmpdir", target)));
+                sep, property, "src", "main", "java", "io", "tmpdir", target)));
     }
 
     /**
-     * Saves unloading from a database into an xml-file.
+     * Packing Entry-elements with values into the root Entries-element,
+     * and saving its into an xml-file, using JAXB.
      */
     public void save() {
         try (StoreSQL sql = new StoreSQL(new Config())) {

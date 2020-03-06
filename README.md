@@ -1,10 +1,14 @@
+[![Build Status](https://travis-ci.org/yurydoronin/job4j_xml.svg?branch=master)](https://travis-ci.org/yurydoronin/job4j_xml)
+[![codecov](https://codecov.io/gh/yurydoronin/job4j_xml/branch/master/graph/badge.svg)](https://codecov.io/gh/yurydoronin/job4j_xml)
+
+# Тестовое задание компании "Магнит"
 **XML XSLT JDBC Оптимизация** 
 
 В задании нужно произвести процесс манипуляции над данными. В качестве базы данных использовать SQLite.
 
 Весь процесс выполнения программы можно описать в виде конвейера:
 
-![Image alt](https://github.com/yurydoronin/job4j/raw/branch_20459/chapter_007/src/main/java/ru/job4j/magnit/process.png)
+![Image alt](https://github.com/yurydoronin/job4j_xml/raw/master/process.png)
 
 1. Генерация данных в SQLite. Описывается классом StoreSQL.
  
@@ -18,12 +22,32 @@
 
 3. Генерация XML из данных в базе. Описывается классом StoreXML.
 
+    Данные нужно сохранить в виде XML.
+ 
+        <entries>
+            <entry>
+                <field>значение поля field</field>
+            </entry>
+              ...
+            <entry>
+                <field>значение поля field</field>
+            </entry>
+        </entries>
+
 4. Преобразовать полученный файл из пункта 3 в файл другого XML формата через XSLT. Описываться классом ConvertXSLT.
+
+    Получаемый после преобразования файл должен выглядеть следующим образом.
+ 
+        <entries>
+        <entry field="значение поля field"/>
+            ...
+        <entry field="значение поля field"/>
+        </entries>        
 
 5. Приложение парсит выходной файл из пункта 4 и выводит арифметическую сумму значений всех атрибутов field в консоль.
 
 6. При больших N (~1000000) время работы приложения не должно быть более пяти минут.
 
 
-В прилажении использованы:
+**В приложении использованы:**
    JAXB, вместо рекомендованного SAX-анализатора использован более новый StAX-анализатор.

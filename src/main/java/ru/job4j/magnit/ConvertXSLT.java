@@ -6,7 +6,6 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 import java.io.File;
 import java.io.FileInputStream;
-import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -22,41 +21,34 @@ import java.util.Objects;
 public class ConvertXSLT {
 
     /**
-     *
+     * A source file.
      */
-    private Path source;
+    private final Path source;
 
     /**
-     *
+     * A file in which the formatted result will be saved.
      */
-    private Path dest;
+    private final Path dest;
 
     /**
-     *
+     * An XSL-transformer.
      */
-    private String scheme;
+    private final String scheme;
 
-    /**
-     *
-     * @param source, .
-     * @param dest, .
-     * @param scheme, .
-     * @throws URISyntaxException, .
-     */
-    public ConvertXSLT(String source, String dest, String scheme) throws URISyntaxException {
+    public ConvertXSLT(String source, String dest, String scheme) {
         String property = System.getProperty("user.dir");
         String sep = File.separator;
         this.source = Paths.get(Objects.requireNonNull(String.join(
-                sep, property, "chapter_007", "src", "main", "java", "io", "tmpdir", source)));
+                sep, property, "src", "main", "java", "io", "tmpdir", source)));
         this.dest = Paths.get(Objects.requireNonNull(String.join(
-                sep, property, "chapter_007", "src", "main", "java", "io", "tmpdir", dest)));
-        this.scheme = Objects.requireNonNull(
-                ConvertXSLT.class.getClassLoader().getResource(scheme)).toURI().getPath();
+                sep, property, "src", "main", "java", "io", "tmpdir", dest)));
+        this.scheme = scheme;
     }
 
     /**
+     * Converts an xml-file to the file with a different xml-style.
      *
-     * @return .
+     * @return a transformed file.
      * @throws Exception, .
      */
     public Path convert() throws Exception {
